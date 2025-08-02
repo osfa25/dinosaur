@@ -1,0 +1,445 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 70%, #90EE90 70%, #90EE90 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+}
+
+.game-container {
+    width: 900px;
+    height: 250px;
+    background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 70%, #90EE90 70%, #90EE90 100%);
+    border: 3px solid #2F4F4F;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20px;
+    background: #8B4513;
+    border-top: 2px solid #654321;
+}
+
+.ground::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    height: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        #228B22 0px,
+        #228B22 10px,
+        #32CD32 10px,
+        #32CD32 20px
+    );
+    animation: moveGrass 0.5s linear infinite;
+}
+
+@keyframes moveGrass {
+    0% { background-position-x: 0; }
+    100% { background-position-x: -20px; }
+}
+
+.dino {
+    position: absolute;
+    bottom: 20px;
+    left: 60px;
+    width: 60px;
+    height: 60px;
+    transition: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    filter: drop-shadow(2px 4px 2px #2d3514);
+}
+
+.dino-body {
+    width: 60px;
+    height: 60px;
+    position: relative;
+}
+
+/* Cuerpo principal del dinosaurio */
+.dino-body::before {
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    width: 25px;
+    height: 30px;
+    background-color: #4a5c2a;
+    border-radius: 8px 8px 4px 4px;
+    border: 2px solid #2d3514;
+    background: linear-gradient(135deg, #4a5c2a 60%, #6b8f3e 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Cabeza del dinosaurio */
+.dino-head {
+    position: absolute;
+    bottom: 35px;
+    left: 15px;
+    width: 20px;
+    height: 20px;
+    background-color: #4a5c2a;
+    border-radius: 10px 10px 5px 5px;
+    border: 2px solid #2d3514;
+    background: radial-gradient(circle at 60% 40%, #6b8f3e 60%, #4a5c2a 100%);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+}
+
+/* Ojo del dinosaurio */
+.dino-eye {
+    position: absolute;
+    bottom: 42px;
+    left: 25px;
+    width: 4px;
+    height: 4px;
+    background-color: #000;
+    border-radius: 50%;
+    animation: blink 3s infinite;
+    border: 1px solid #fff;
+}
+
+@keyframes blink {
+    0%, 95% { opacity: 1; }
+    96%, 99% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Boca del dinosaurio */
+.dino-mouth {
+    position: absolute;
+    bottom: 38px;
+    left: 30px;
+    width: 3px;
+    height: 2px;
+    background-color: #2d3514;
+    border-radius: 1px;
+}
+
+/* Brazo del dinosaurio */
+.dino-arm {
+    position: absolute;
+    bottom: 28px;
+    left: 35px;
+    width: 8px;
+    height: 3px;
+    background-color: #4a5c2a;
+    border-radius: 2px;
+    border: 1px solid #2d3514;
+    background: linear-gradient(90deg, #4a5c2a 70%, #6b8f3e 100%);
+}
+
+/* Piernas del dinosaurio */
+.dino-leg1 {
+    position: absolute;
+    bottom: 8px;
+    left: 25px;
+    width: 4px;
+    height: 12px;
+    background-color: #4a5c2a;
+    border-radius: 2px;
+    border: 1px solid #2d3514;
+    animation: legRun1 0.4s linear infinite;
+    background: linear-gradient(90deg, #4a5c2a 70%, #6b8f3e 100%);
+}
+
+.dino-leg2 {
+    position: absolute;
+    bottom: 8px;
+    left: 35px;
+    width: 4px;
+    height: 12px;
+    background-color: #4a5c2a;
+    border-radius: 2px;
+    border: 1px solid #2d3514;
+    animation: legRun2 0.4s linear infinite;
+    background: linear-gradient(90deg, #4a5c2a 70%, #6b8f3e 100%);
+}
+
+@keyframes legRun1 {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes legRun2 {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Cola del dinosaurio */
+.dino-tail {
+    position: absolute;
+    bottom: 20px;
+    left: 8px;
+    width: 15px;
+    height: 8px;
+    background-color: #4a5c2a;
+    border-radius: 0 8px 8px 0;
+    border: 2px solid #2d3514;
+    transform-origin: right center;
+    animation: tailWag 0.6s ease-in-out infinite alternate;
+    background: linear-gradient(90deg, #4a5c2a 70%, #6b8f3e 100%);
+}
+
+@keyframes tailWag {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+.dino.jumping {
+    animation: jump 0.6s ease-out;
+}
+
+.dino.jumping .dino-leg1,
+.dino.jumping .dino-leg2 {
+    animation: none;
+    transform: rotate(-20deg);
+}
+
+.dino.jumping .dino-tail {
+    animation: none;
+    transform: rotate(10deg);
+}
+
+@keyframes jump {
+    0% { bottom: 20px; }
+    50% { bottom: 120px; }
+    100% { bottom: 20px; }
+}
+
+.building {
+    position: absolute;
+    bottom: 20px;
+    width: 40px;
+    height: 80px;
+    background: linear-gradient(to bottom, #696969 0%, #808080 50%, #696969 100%);
+    border: 2px solid #2F4F4F;
+    border-radius: 2px 2px 0 0;
+    animation: moveBuilding 3s linear infinite;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.building::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 5px;
+    width: 8px;
+    height: 8px;
+    background: #FFD700;
+    border-radius: 1px;
+    box-shadow: 
+        15px 0 0 #FFD700,
+        22px 0 0 #FFD700,
+        0 15px 0 #FFD700,
+        15px 15px 0 #FFD700,
+        22px 15px 0 #FFD700,
+        0 30px 0 #FFD700,
+        15px 30px 0 #FFD700,
+        22px 30px 0 #FFD700;
+}
+
+.building::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    background: #DC143C;
+    border-radius: 50%;
+    border: 2px solid #B22222;
+}
+
+@keyframes moveBuilding {
+    0% { right: -50px; }
+    100% { right: 100%; }
+}
+
+.building.tall {
+    height: 100px;
+    width: 35px;
+}
+
+.building.wide {
+    width: 50px;
+    height: 70px;
+}
+
+.score {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    color: #535353;
+    font-weight: bold;
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #535353;
+    font-size: 18px;
+    display: none;
+}
+
+.game-over h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.game-over p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.game-over button {
+    background-color: #535353;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    border-radius: 5px;
+}
+
+.game-over button:hover {
+    background-color: #333;
+}
+
+.instructions {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 14px;
+    color: #535353;
+}
+
+.paused {
+    animation-play-state: paused !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Nubes del fondo - eliminadas las nubes decorativas para estilo minimalista */
+
+.paused {
+    animation-play-state: paused !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Responsive design */
+@media (max-width: 950px) {
+    .game-container {
+        width: 95%;
+        margin: 0 10px;
+    }
+    
+    .instructions,
+    .score {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .game-container {
+        height: 200px;
+    }
+    
+    .dino {
+        width: 35px;
+        height: 38px;
+        left: 40px;
+    }
+    
+    .dino::before {
+        width: 35px;
+        height: 38px;
+    }
+    
+    .cactus {
+        width: 20px;
+        height: 40px;
+    }
+    
+    .cactus::before {
+        width: 20px;
+        height: 40px;
+    }
+    
+    .cactus.small {
+        height: 28px;
+        width: 16px;
+    }
+    
+    .cactus.small::before {
+        width: 16px;
+        height: 28px;
+    }
+}
+
+/* Cactus estilo Google Dino */
+.cactus {
+    position: absolute;
+    bottom: 20px;
+    width: 22px;
+    height: 44px;
+    background: #388e3c;
+    border-radius: 3px 3px 0 0;
+    border: 2px solid #2d3514;
+    box-shadow: 2px 0 #2d3514, 4px 0 #388e3c, 6px 0 #2d3514;
+}
+
+.cactus::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    bottom: 10px;
+    width: 8px;
+    height: 18px;
+    background: #388e3c;
+    border-radius: 2px;
+    border: 2px solid #2d3514;
+}
+
+.cactus.small {
+    width: 14px;
+    height: 28px;
+}
+
+.cactus.small::before {
+    left: 3px;
+    width: 5px;
+    height: 12px;
+}

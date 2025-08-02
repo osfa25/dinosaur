@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Dinosaurio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container" id="gameContainer">
+        <div class="instructions">Presiona ESPACIO o CLICK para saltar</div>
+        <div class="score" id="score">HI 00000 00000</div>
+        <div class="ground"></div>
+        <div class="dino" id="dino">
+            <div class="dino-body"></div>
+            <div class="dino-head"></div>
+            <div class="dino-eye"></div>
+            <div class="dino-mouth"></div>
+            <div class="dino-arm"></div>
+            <div class="dino-leg1"></div>
+            <div class="dino-leg2"></div>
+            <div class="dino-tail"></div>
+        </div>
+        <div class="cactus"></div>
+        <div class="cactus small"></div>
+        
+        <div class="game-over" id="gameOver">
+            <h2>¡JUEGO TERMINADO!</h2>
+            <p>Tu puntuación: <span id="finalScore">0</span></p>
+            <button onclick="restartGame()">REINICIAR JUEGO</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
